@@ -52,12 +52,22 @@ def dijkstra(G, start, end):
         
         S[V] = True
         V = vertex
+    
+    return P, D
 
-    print "Prcedentes: " + str(P)
-    print "Distâncias: " + str(D)
+def shortest_path(start, end, previous):
+    path = [end]
+    back = end
+    while back != start:
+        back = previous[back]
+        path.append(back)
+    path.reverse()
+    print path
 
 print "Exemplo 1"
-dijkstra(ex1, 1, 5)
+precedentes, distancias = dijkstra(ex1, 1, 5)
+shortest_path(1, 5, precedentes)
 print 
 print "Exemplo 2"
-dijkstra(ex2, 1, 6)
+precedentes, distancias = dijkstra(ex2, 1, 6)
+shortest_path(1, 6, precedentes)
