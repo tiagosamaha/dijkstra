@@ -24,7 +24,7 @@ def dijkstra(G, start, end):
     P[start] = -1
     
     V = start
-    
+
     while True:
         vertex = G[V].copy()
         for neighbor in G[V]:
@@ -32,16 +32,12 @@ def dijkstra(G, start, end):
                 vertex.pop(neighbor)
         
         if not vertex == {}:
+            for v, d in vertex.iteritems():
+                D[v] = D[V] + d
             distance, vertex = min([ (d,v) for v, d in vertex.iteritems() ])
+            P[vertex] = V
         else:
             break
-        
-        if D[vertex] == float("inf"):
-            D[vertex] = distance
-            P[vertex] = V
-        elif D[vertex] < distance:
-            D[vertex] = D[V] + distance
-            P[vertex] = V
         
         S[V] = True
         V = vertex
