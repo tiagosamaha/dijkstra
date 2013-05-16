@@ -44,9 +44,11 @@ def dijkstra(G, start, end):
         
         if not vertex == {}:
             for v, d in vertex.iteritems():
-                D[v] = D[V] + d
+                if D[V] + d < D[v]:
+                    D[v] = D[V] + d
+                    P[v] = V
             distance, vertex = min([ (d,v) for v, d in vertex.iteritems() ])
-            P[vertex] = V
+            # P[vertex] = V
         else:
             break
         
