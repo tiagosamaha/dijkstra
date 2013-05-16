@@ -37,15 +37,16 @@ def dijkstra(G, start, end):
     V = start
 
     while True:
-        vertex = G[V].copy()
+        neighbors_of_vertex = G[V].copy()
         for neighbor in G[V]:
             if S[neighbor]:
-                vertex.pop(neighbor)
+                neighbors_of_vertex.pop(neighbor)
         
-        if not vertex == {}:
-            for v, d in vertex.iteritems():
-                D[v] = D[V] + d
-            distance, vertex = min([ (d,v) for v, d in vertex.iteritems() ])
+        if not neighbors_of_vertex == {}:
+            for v, d in neighbors_of_vertex.iteritems():
+                if D[V] + d < D[v]:
+                    D[v] = D[V] + d
+            distance, vertex = min([ (d,v) for v, d in neighbors_of_vertex.iteritems() ])
             P[vertex] = V
         else:
             break
@@ -67,7 +68,9 @@ def shortest_path(start, end, previous):
 print "Exemplo 1"
 precedentes, distancias = dijkstra(ex1, 1, 5)
 shortest_path(1, 5, precedentes)
+print distancias
 print 
 print "Exemplo 2"
 precedentes, distancias = dijkstra(ex2, 1, 6)
 shortest_path(1, 6, precedentes)
+print distancias
