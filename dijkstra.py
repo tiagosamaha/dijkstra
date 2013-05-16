@@ -48,11 +48,13 @@ def dijkstra(G, start, end):
                     D[v] = D[V] + d
                     P[v] = V
             distance, vertex = min([ (d,v) for v, d in vertex.iteritems() ])
-            S[V] = True
-            V = vertex
+            # P[vertex] = V
         else:
             break
-    
+        
+        S[V] = True
+        V = vertex
+
     print "Prcedentes: " + str(P)
     print "Distâncias: " + str(D)
 
