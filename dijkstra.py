@@ -54,10 +54,8 @@ class Graph:
         return path
     
     def shortest_path_distance(self):
-        total = 0
         distances = []
         for vertex in self.shortest_path():
-            total = self.D[vertex] + total
             distances.append(self.D[vertex])
-        return total, distances
+        return distances
         

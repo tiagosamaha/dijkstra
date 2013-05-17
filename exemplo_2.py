@@ -12,9 +12,7 @@ example = {
 }
 
 graph = Graph(example, 1, 6)
-precedentes, distancias = graph.dijkstra()
-total, distances = graph.shortest_path_distance()
+graph.dijkstra()
 
 print "Melhor caminho: " + str(graph.shortest_path())
-print "Distâncias por vértice: " + str(distances)
-print "Distância total: " + str(total)
+print "Distâncias por vértice: " + str(graph.shortest_path_distance())
