@@ -23,7 +23,7 @@ class Graph:
         self.V = self.start
         
     def dijkstra(self):
-        while True:
+        while self.S[self.end] == False:
             neighbors_of_vertex = self.G[self.V].copy()
             for neighbor in self.G[self.V]:
                 if self.S[neighbor]:
@@ -35,8 +35,6 @@ class Graph:
                         self.D[v] = self.D[self.V] + d
                 distance, vertex = min([ (d,v) for v, d in neighbors_of_vertex.iteritems() ])
                 self.P[vertex] = self.V
-            else:
-                break
         
             self.S[self.V] = True
             self.V = vertex
@@ -58,4 +56,3 @@ class Graph:
         for vertex in self.shortest_path():
             distances.append(self.D[vertex])
         return distances
-        
